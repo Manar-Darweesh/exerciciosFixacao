@@ -2,7 +2,9 @@ package entidades;
 
 import entidadeEnum.StatusPedido;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.List;
 public class Pedido {
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    private Date momento;
+    private Date momento = Date.from(Instant.now());
     private StatusPedido status;
 
     private Cliente cliente;
@@ -69,9 +71,10 @@ public class Pedido {
 
     @Override
     public String toString(){
+         String moment = sdf.format((momento));
         StringBuilder sb = new StringBuilder();
         sb.append("Momento do pedido: ");
-        sb.append(sdf.format((momento) + "\n"));
+        sb.append(moment + "\n");
         sb.append("Status do pedido: ");
         sb.append(status + "\n");
         sb.append("Cliente :" );
